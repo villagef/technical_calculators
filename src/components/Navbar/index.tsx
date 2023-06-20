@@ -1,8 +1,5 @@
-import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { AppBar, Toolbar, Typography } from "@mui/material";
-import Tab from "@mui/material/Tab";
-import Tabs from "@mui/material/Tabs";
+import { useLocation, Link } from "react-router-dom";
+import { AppBar, Toolbar, Typography, Tab, Tabs } from "@mui/material";
 import "./style.css";
 
 const Navbar = () => {

@@ -19,7 +19,7 @@ const Layout: FunctionComponent<ChildrenProps> = ({ children }) => {
       <CssBaseline />
       <div className="layout">
         <Navbar />
-        <Container maxWidth="xl" component="main" className="layout-container">
+        <Container maxWidth="xl" component="main">
           {children}
         </Container>
       </div>
