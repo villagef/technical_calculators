@@ -20,6 +20,16 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
+  "exclude": ["node_modules"],
+  "paths": {
+    "components/*": ["src/components/*"],
+    "ui/*": ["src/ui/*"],
+    "store/*": ["src/store/*"],
+    "shared/*": ["src/shared/*"],
+    "assets/*": ["src/assets/*"],
+    "hooks/*": ["src/hooks/*"],
+    "utils/*": ["src/utils/*"],
+  },
   "include": [
     "src"
   ]
