@@ -1,0 +1,20 @@
+.tab-component {
+    background-color: transparent;
+    border: none;
+    margin-left: 10px;
+    font-weight: 600 !important;
+    text-transform: capitalize !important;
+    font-size: 1rem;
+    color: #f1f3f7 !important;
+}
+
+.tab-component:hover {
+    color: #bdbdbd !important;
+    cursor: pointer;
+}
+
+.Mui-selected {
+    text-decoration: none;
+    color: #bdc3cc !important;
+
+}

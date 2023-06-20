@@ -1,10 +1,17 @@
-import { AppBar, Link, Toolbar, Typography } from "@mui/material";
+import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { AppBar, Toolbar, Typography } from "@mui/material";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
+import "./style.css";
 
 const Navbar = () => {
+  const location = useLocation();
+
   return (
     <AppBar
       position="static"
-      color="default"
+      color="primary"
       elevation={0}
       sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
     >
@@ -12,32 +19,22 @@ const Navbar = () => {
         <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
           Technical Calculators
         </Typography>
-        <nav>
-          <Link
-            variant="button"
-            color="text.primary"
-            href="calculator1"
-            sx={{ my: 1, mx: 1.5 }}
-          >
-            Calculator 1
-          </Link>
-          <Link
-            variant="button"
-            color="text.primary"
-            href="calculator2"
-            sx={{ my: 1, mx: 1.5 }}
-          >
-            Calculator 2
-          </Link>
-          <Link
-            variant="button"
-            color="text.primary"
-            href="calculator3"
-            sx={{ my: 1, mx: 1.5 }}
-          >
-            Calculator 3
-          </Link>
-        </nav>
+        <Tabs value={location.pathname}>
+          <Tab
+            label="Calculator 1"
+            value="/calculator1"
+            to="/calculator1"
+            component={Link}
+            className="tab-component"
+          />
+          <Tab
+            label="Calculator 2"
+            value="/calculator2"
+            to="/calculator2"
+            component={Link}
+            className="tab-component"
+          />
+        </Tabs>
       </Toolbar>
     </AppBar>
   );
