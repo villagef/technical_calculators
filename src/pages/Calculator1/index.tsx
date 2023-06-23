@@ -1,13 +1,6 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import {
-  Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-} from "@mui/material";
+import { Controller, useForm } from "react-hook-form";
+import { Button, MenuItem, TextField } from "@mui/material";
 import "./style.css";
 
 interface FormValues {
@@ -16,51 +9,88 @@ interface FormValues {
   r: number;
 }
 
+const options = [
+  {
+    label: "O,5 – koło: stal // droga: stal",
+    value: 0.5,
+  },
+  {
+    label: "O,15 – koło: guma // droga: beton",
+    value: 0.15,
+  },
+  {
+    label: "4,5 – koło: guma // droga: asfalt",
+    value: 4.5,
+  },
+];
+
 const Calculator1 = () => {
-  const { register, handleSubmit } = useForm<FormValues>();
-  const [result, setResult] = useState<number | null>();
+  const { register, handleSubmit, reset, control } = useForm<FormValues>();
+  const [result, setResult] = useState<string>();
 
   const onSubmit = (data: FormValues) => {
     const { f, fn, r } = data;
-    const x = (Number(f) * fn) / r;
-    setResult(Number(x));
+    const calculation = (Number(f) * fn) / r;
+    const message =
+      calculation < 0 || calculation === Infinity
+        ? "Błędne dane!"
+        : `Ft = ${calculation}[N]`;
+
+    setResult(message);
+  };
+
+  const onReset = () => {
+    reset();
+    setResult(undefined);
   };
 
   return (
     <div className="form-wrapper">
       <h1>Kalkulator</h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="form-container">
-        <FormControl>
-          <InputLabel id="dropdown-label">f - wsp. tarcia tocznego</InputLabel>
-          <Select
-            labelId="dropdown-label"
-            id="f"
-            label="f - wsp. tarcia tocznego"
-            {...register("f", { required: true })}
-          >
-            <MenuItem value={0.5}>O,5 – koło: stal // droga: stal</MenuItem>
-            <MenuItem value={0.15}>O,15 – koło: guma // droga: beton</MenuItem>
-            <MenuItem value={4.5}>4,5 – koło: guma // droga: asfalt</MenuItem>
-          </Select>
-        </FormControl>
-
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        onReset={onReset}
+        className="form-container"
+      >
+        <Controller
+          control={control}
+          defaultValue={""}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextField
+              select
+              type="number"
+              label="f - wsp. tarcia tocznego"
+              value={value}
+              onBlur={onBlur}
+              onChange={onChange}
+            >
+              {options.map((option) => (
+                <MenuItem key={option.label} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+          )}
+          name="f"
+        />
         <TextField
           type="number"
           label="Fn - siła nacisku[N]"
           {...register("fn", { required: true })}
         />
-
         <TextField
           type="number"
           label="r - promień koła[mm]"
           {...register("r", { required: true })}
         />
-
         <Button type="submit" variant="contained" color="primary">
           Submit
         </Button>
+        <Button type="reset" variant="contained" color="inherit">
+          Reset
+        </Button>
       </form>
-      {result && <h1>Ft = {result}[N]</h1>}
+      {result && <h1>{result}</h1>}
     </div>
   );
 };
