@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import {
   Button,
   FormControl,
@@ -6,9 +8,7 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import { useForm } from "react-hook-form";
 import "./style.css";
-import { useState } from "react";
 
 interface FormValues {
   f: string;
@@ -18,7 +18,7 @@ interface FormValues {
 
 const Calculator1 = () => {
   const { register, handleSubmit } = useForm<FormValues>();
-  const [result, setResult] = useState<number | null>(null);
+  const [result, setResult] = useState<number | null>();
 
   const onSubmit = (data: FormValues) => {
     const { f, fn, r } = data;
@@ -35,6 +35,7 @@ const Calculator1 = () => {
           <Select
             labelId="dropdown-label"
             id="f"
+            label="f - wsp. tarcia tocznego"
             {...register("f", { required: true })}
           >
             <MenuItem value={0.5}>O,5 – koło: stal // droga: stal</MenuItem>
