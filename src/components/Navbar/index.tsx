@@ -31,6 +31,13 @@ const Navbar = () => {
             component={Link}
             className="tab-component"
           />
+          <Tab
+            label="Calculator 3"
+            value="/calculator3"
+            to="/calculator3"
+            component={Link}
+            className="tab-component"
+          />
         </Tabs>
       </Toolbar>
     </AppBar>

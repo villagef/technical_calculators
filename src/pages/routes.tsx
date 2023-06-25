@@ -4,6 +4,7 @@ import Layout from "../components/Layout";
 
 const Calculator1 = lazy(() => import("./Calculator1"));
 const Calculator2 = lazy(() => import("./Calculator2"));
+const Calculator3 = lazy(() => import("./Calculator3"));
 
 const Routes = () => (
   <Layout>
@@ -12,6 +13,7 @@ const Routes = () => (
         <Route path="/" element={<Calculator1 />} />
         <Route path="/calculator1" element={<Calculator1 />} />
         <Route path="/calculator2" element={<Calculator2 />} />
+        <Route path="/calculator3" element={<Calculator3 />} />
       </Switch>
     </Suspense>
   </Layout>
