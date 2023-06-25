@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Button, MenuItem, TextField } from "@mui/material";
-import "./style.css";
 
 interface FormValues {
   f: string;
